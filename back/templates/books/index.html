@@ -1,0 +1,22 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Books Project</title>
+    </head>
+    <body>
+            {% if douban_book %}
+            <ul>
+                {% for book in douban_book %}
+                    <li>
+                        <img src="{{book.cover}}"alt="{{ book.title }}">
+                        <p>{{ book.title }}</p>
+                        <p>{{ book.summary }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+                <p>No books are available.</p>
+            {% endif %}
+    </body>
+    </html>
