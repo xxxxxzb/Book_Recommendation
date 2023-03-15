@@ -2,18 +2,31 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from rest_framework.decorators import api_view
-
-from .models import UserRegisterForm, UserLoginForm
 from django.shortcuts import render
-from .models import DoubanBook
+from .models import DoubanBook, Users, UserRecommend, BookRead
 from rest_framework import viewsets
-from .serializers import BookSerializer
+from .serializers import BookSerializer, UsersSerializer, UserRecommendSerializer, BookReadSerializer
 from rest_framework.response import Response
 
 
 class BookViewSet(viewsets.ModelViewSet):
-    queryset = DoubanBook.objects.all().order_by('id')[:100]
+    queryset = DoubanBook.objects.all().order_by('id')[:1000]
     serializer_class = BookSerializer
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = Users.objects.all()
+    serializer_class = UsersSerializer
+
+
+class BookReadViewSet(viewsets.ModelViewSet):
+    queryset = BookRead.objects.all()
+    serializer_class = BookReadSerializer
+
+
+class UserRecommendViewSet(viewsets.ModelViewSet):
+    queryset = UserRecommend.objects.all()
+    serializer_class = UserRecommendSerializer
 
 # @api_view(['GET'])
 # def book_list(request):

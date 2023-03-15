@@ -15,10 +15,13 @@ from django.shortcuts import render
 
 from django.urls import include, path
 from rest_framework import routers
-from .views import BookViewSet
+from .views import BookViewSet, BookReadViewSet, UserViewSet, UserRecommendViewSet
 
 router = routers.DefaultRouter()
 router.register(r'books', BookViewSet)
+router.register(r'users', UserViewSet)
+router.register(r'book_read', BookReadViewSet)
+router.register(r'user_recommend', UserRecommendViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
